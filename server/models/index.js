@@ -50,6 +50,14 @@ Object.keys(db).forEach(modelName => {
   }
 });
 
+/**
+ * This function should be used only once to create the tables in the database.
+ * This will drop all the tables present in the database with the models defined create new table schema
+ */
+// (async function newFunction({force:true}) {
+//   await sequelize.sync();
+// })();
+
 //Export Sequelize
 
 Sequelize.Promise.onPossiblyUnhandledRejection(() => logger.debug('Catched in local'));

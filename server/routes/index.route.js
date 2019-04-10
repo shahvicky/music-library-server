@@ -1,6 +1,6 @@
 const express = require('express');
 const ReS = require('./../../global_functions').ReS;
-const path = require('path');
+const authRoutes = require('./auth.route');
 const router = express.Router();
 
 /**
@@ -27,5 +27,7 @@ router.get('/health-check', async (req, res) => {
   
 });
 
+// mount auth routes at /auth
+router.use('/auth', authRoutes);
 
 module.exports = router;

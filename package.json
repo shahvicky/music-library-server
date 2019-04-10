@@ -13,6 +13,8 @@
   },
   "author": "Vivek Shah <shahvicky1992@gmail.com>",
   "dependencies": {
+    "bcrypt": "^3.0.5",
+    "bcrypt-promise": "^2.0.0",
     "bluebird": "^3.5.3",
     "body-parser": "1.18.2",
     "compression": "1.7.2",
@@ -29,9 +31,12 @@
     "joi": "14.3.1",
     "lodash": "^4.17.11",
     "method-override": "^2.3.10",
+    "moment": "^2.24.0",
     "morgan": "^1.9.1",
     "mysql2": "^1.6.5",
     "parse-error": "^0.2.0",
+    "passport": "^0.4.0",
+    "passport-jwt": "^4.0.0",
     "sequelize": "^5.2.13",
     "winston": "2.4.1",
     "winston-daily-rotate-file": "3.3.2"
