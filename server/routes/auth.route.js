@@ -10,4 +10,7 @@ require('./../middleware/passport')(passport)
 router.route('/register')
   .post(validate(paramValidation.registerUser), authCtrl.create);
 
+router.route('/login')
+  .post(validate(paramValidation.loginUser), authCtrl.login);
+
 module.exports = router;

@@ -1,7 +1,7 @@
 const Joi = require('joi');
 
 module.exports = {
-  //POST /api/auth/register
+  
   registerUser: {
     body: {
       fname: Joi.string().max(60).required(),
@@ -12,4 +12,11 @@ module.exports = {
       password: Joi.string().regex(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[\w~@#$%^&*+=`|{}:;!.?\"()\[\]-]{6,}$/).required(),   
     }
   },
+
+  loginUser: {
+    body: {
+      email: Joi.string().email().required(),
+      password: Joi.string().required()
+    }
+  }
 };

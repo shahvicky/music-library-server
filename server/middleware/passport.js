@@ -12,7 +12,7 @@ const JwtStrategy = require('passport-jwt').Strategy;
 const ExtractJwt = require('passport-jwt').ExtractJwt;
 const db = require('../models');
 const config = require('./../../config/config');
-const {to, TE, ReE, ReS} = require('./../../global_functions');
+const to = require('./../../global_functions').to;
 
 /*Here the strategy we’re going to use for the web token authentication */
 

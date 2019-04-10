@@ -29,7 +29,7 @@ const createUser = async (body) => {
  * @param {object} body The request body
  * @returns {user} The user object that will be stored in the user table
  */
-const createUserObj = function (body) {
+const createUserObj = (body) => {
   let userObj = {};
   userObj.usrFname = body.fname;
   userObj.usrLname = body.lname;
@@ -40,9 +40,30 @@ const createUserObj = function (body) {
   // check number of incorrect attempts to lock the account temporarily 
   userObj.usrPassAttempts = 0;
   // if the user deactivates the account, this flag is 0 else 1
-  userObj.usrRowActiveFlag = 0;
+  userObj.usrRowActiveFlag = 1;
   return userObj;
 }
 
+/**
+ * This function takes user information from the request as parameter, checks if the user email exists in 
+ * the database, and then verifies the password.
+ * @param {object} userInfo The user info as received in the request
+ * @returns {user} Returns the user record from the database if the input parameter matches else throws error 
+ */
+const authUser =  async (userInfo) => {
+  let User = db.users;
+  let unique_key = userInfo.email;
+  if(!unique_key) TE('Please enter an email to login');
+  if(!userInfo.password) TE('Please enter a password to login');
+  let err, user;
+  [err, user] = await to(User.findOne({where:{usrEmail:unique_key}}));
+  if(err) TE(err.message);
+  if(!user) TE('Not registered');
+  [err, user] = await to(user.comparePassword(userInfo.password));
+  if(err) TE(err.message);
+  if(!user.usrRowActiveFlag) TE('User account deleted')
+  return user;
+}
 
-module.exports = {createUser}
+
+module.exports = {createUser, authUser}

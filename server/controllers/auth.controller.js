@@ -19,4 +19,21 @@ const create = async (req, res) => {
   return ReS(res, {message:"Successfully registered."}, 201);
 }
 
-module.exports = {create}
+/**
+ * This function is used for user login. 
+ * @param {any} req
+ * @param {any} res
+ * @returns {*} Returns jwt token, email if valid username(email) and password is provided
+ */
+const login = async function(req, res){
+  const body = req.body;
+  let err, user;
+
+  [err, user] = await to(authService.authUser(body));
+  if(err) return ReE(res, err, 422);
+  const userObj = user.toWeb();
+  return ReS(res, {token:user.getJWT(), email: userObj.usrEmail});
+}
+
+
+module.exports = {create, login}
