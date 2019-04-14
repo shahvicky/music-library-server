@@ -11,6 +11,7 @@ module.exports = (sequelize, DataTypes) => {
     trkUserId: {
       type: DataTypes.INTEGER(10).UNSIGNED,
       allowNull: false,
+      primaryKey: true,
       references: {
         model: 'users',
         key: 'usr_user_id'

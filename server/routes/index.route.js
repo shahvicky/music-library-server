@@ -2,6 +2,7 @@ const express = require('express');
 const ReS = require('./../../global_functions').ReS;
 const authRoutes = require('./auth.route');
 const addmusicRoutes = require('./addmusic.route');
+const dashboardRoutes = require('./dashboard.routes');
 const router = express.Router();
 
 /**
@@ -31,7 +32,10 @@ router.get('/health-check', async (req, res) => {
 // mount auth routes at /auth
 router.use('/auth', authRoutes);
 
-//mount addmusic routed at /addmusic
+//mount addmusic routes at /addmusic
 router.use('/addmusic', addmusicRoutes);
+
+//mount dashboard routes at /dashboard
+router.use('/dashboard', dashboardRoutes);
 
 module.exports = router;
