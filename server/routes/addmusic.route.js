@@ -11,7 +11,7 @@ router.route('/search/:searchKey')
   .get(passport.authenticate('jwt', {session:false}), addmusicCtrl.search);
 
 /** GET /api/addmusic/addToLib - add track to user library */
-router.route('/addToLib')
+router.route('/addToLib/:trackId')
   .get(passport.authenticate('jwt', {session:false}), addmusicCtrl.create);
 
 module.exports = router;

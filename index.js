@@ -23,7 +23,7 @@ models.sequelize
 if (!module.parent) {
   // listen on port config.port
   app.listen(config.port, () => {
-    console.info(`server started on port ${config.port} (${config.env})`);
+    logger.info(`server started on port ${config.port} (${config.env})`);
   });
 }
 

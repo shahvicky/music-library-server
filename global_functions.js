@@ -8,6 +8,7 @@
  * responses in a unified way.
  */
 const pe = require('parse-error'); //parses error so you can read error message and handle them accordingly
+const logger = require('./config/winston');
 
 const to = (promise) => {
   return promise
@@ -20,7 +21,7 @@ const to = (promise) => {
 
 const TE = (err_msg, log) => {
   if(log){
-    console.error(err_msg);
+    logger.error(err_msg);
   }
   throw new Error(err_msg);
 }
@@ -44,7 +45,7 @@ const ReS = (res, data, code) => {
 
 //This is here to handle all the uncaught promise rejections
 process.on('unhandledRejection', error => {
-  console.error('Uncaught Error', pe(error));
+  logger.error('Uncaught Error', pe(error));
 });
 
 module.exports = {to, TE, ReE, ReS};

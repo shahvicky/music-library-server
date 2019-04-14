@@ -24,7 +24,7 @@ const sequelize =  new Sequelize(database, username, password, {
   host: host,
   dialect: dialect,
   operatorsAliases: false,
-  logging: false,
+  logging: true,
   pool: {
     max: 5, 
     min: 0,
@@ -54,9 +54,9 @@ Object.keys(db).forEach(modelName => {
  * This function should be used only once to create the tables in the database.
  * This will drop all the tables present in the database with the models defined create new table schema
  */
-// (async function newFunction({force:true}) {
-//   await sequelize.sync();
-// })();
+(async function newFunction() {
+  await sequelize.sync();
+})();
 
 //Export Sequelize
 
