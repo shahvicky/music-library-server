@@ -13,7 +13,9 @@ const create = async (req, res) => {
   res.setHeader('Content-Type', 'application/json');
   const body = req.body;
   let err, user;
-  
+  if(body.password !== body.passwordConfirm) {
+    return ReE(res, {message: "Password does not match with confirm password"}, 422);
+  }
  [err, user] = await to(authService.createUser(body));
   if(err) return ReE(res, err, 422);
   return ReS(res, {message:"Successfully registered."}, 201);

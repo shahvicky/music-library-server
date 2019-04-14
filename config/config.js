@@ -25,6 +25,8 @@ const envVarsSchema = Joi.object({
     .description('Password to connect to SQL Database').default("root"),
   SQL_DB_NAME: Joi.string()
     .description('Database name in the SQL DB').default("music"),
+  LAST_FM_URL_ROOT: Joi.string().required(),
+  LAST_FM_API_KEY: Joi.string().alphanum().required()
 }).unknown()
   .required();
 
@@ -46,6 +48,10 @@ const config = {
     password: envVars.SQL_PASSWORD,
     database: envVars.SQL_DB_NAME
   },
+  lastfm: {
+    baseURL: envVars.LAST_FM_URL_ROOT,
+    apiKey: envVars.LAST_FM_API_KEY
+  }
 };
 
 module.exports = config;

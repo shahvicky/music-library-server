@@ -24,7 +24,7 @@ module.exports =  (passport) => {
 
     passport.use(new JwtStrategy(opts, async function (jwt_payload, done) {
         let err, user;
-        [err, user] = await to(User.findOne({where: {usrUserId:jwt_payload.user_id, usrUsername: jwt_payload.username}}));
+        [err, user] = await to(User.findOne({where: {usrUserId:jwt_payload.user_id}}));
         // logger.debug('user', user.usrUserId);
         if(err) return done(err, false);
         if(!user.usrRowActiveFlag) {
