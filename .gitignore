@@ -1,6 +1,3 @@
-#API and secret keys
-.env
-
 #Dependency directories
 node_modules
 
